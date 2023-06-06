@@ -20,8 +20,11 @@
       "**/core.python*": true,
       "**/CVS": true
    },
-   "files.autoSave": "off",
-   "workbench.colorTheme": "Visual Studio Dark",
+   "files.autoSave": "afterDelay",
+   "workbench.colorTheme": "Luvia Theme",
    "terminal.integrated.gpuAcceleration": "canvas",
-   "editor.defaultFormatter": "HookyQR.beautify"
+   "editor.defaultFormatter": "HookyQR.beautify",
+   "editor.formatOnPaste": true,
+   "editor.formatOnSave": true,
+   "editor.wordWrap": "on"
 }
