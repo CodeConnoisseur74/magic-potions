@@ -16,9 +16,9 @@ function randomPotion() {
 }
 
 function startGame() {
-    for (let r = 0; r < rows; r++) {
+    for (let r = 0;r < rows;r++) {
         let row = [];
-        for (let c = 0; c < columns; c++) {
+        for (let c = 0;c < columns;c++) {
             // <img id="0-0" src="./images/Red.png">
             let tile = document.createElement("img");
             tile.id = r.toString() + "-" + c.toString();
@@ -97,13 +97,31 @@ function matchPotions() {
 
 function matchThree() {
     //check rows
-    for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < columns - 2; c++) {
+    for (let r = 0;r < rows;r++) {
+        for (let c = 0;c < columns - 2;c++) {
             let potion1 = board[ r ][ c ];
             let potion2 = board[ r ][ c + 1 ];
             let potion3 = board[ r ][ c + 2 ];
             if (potion1.src == potion2.src && potion2.src == potion3.src && !potion1.src.includes("blank")) {
                 potion1.src = "./images/blank.png";
+                potion2.src = "./images/blank.png";
+                potion3.src = "./images/blank.png";
+
+            }
+        }
+    }
+
+    //check columns
+    for (let c = 0;c < columns;c++) {
+        for (let r = 0;r < rows - 2;r++) {
+            let potion1 = board[ r ][ c ];
+            let potion2 = board[ r + 1 ][ c ];
+            let potion3 = board[ r + 2 ][ c ];
+            if (potion1.src == potion2.src && potion2.src == potion3.src && !potion1.src.includes("blank")) {
+                potion1.src = "./images/blank.png";
+                potion2.src = "./images/blank.png";
+                potion3.src = "./images/blank.png";
+
             }
         }
     }
