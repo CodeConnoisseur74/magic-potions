@@ -26,5 +26,12 @@
    "editor.defaultFormatter": "HookyQR.beautify",
    "editor.formatOnPaste": true,
    "editor.formatOnSave": true,
-   "editor.wordWrap": "on"
+   "editor.wordWrap": "on",
+   "javascript.format.semicolons": "insert",
+   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+   "editor.guides.bracketPairs": true,
+   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+   "emmet.includeLanguages": {
+      "javascript": "javascriptreact"
+   }
 }
