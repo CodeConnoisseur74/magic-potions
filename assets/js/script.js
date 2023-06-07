@@ -89,3 +89,10 @@ function dragEnd() {
         otherTile = currImg;
     }
 }
+
+function matchPotions() {
+    //matchFive()
+    //matchFour()
+    matchThree();
+}
+
