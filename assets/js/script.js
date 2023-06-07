@@ -1,6 +1,6 @@
 var potions = [ "Blue", "Pink", "Green", "Yellow", "Red", "Purple" ];
 var board = [];
-var row = 9;
+var rows = 9;
 var columns = 9;
 var score = 0;
 
@@ -16,7 +16,7 @@ function randomPotion() {
 }
 
 function startGame() {
-    for (let r = 0; r < row; r++) {
+    for (let r = 0; r < rows; r++) {
         let row = [];
         for (let c = 0; c < columns; c++) {
             // <img id="0-0" src="./images/Red.png">
@@ -82,7 +82,6 @@ function dragEnd() {
 
     if (isAdjacent) {
 
-
         let currImg = currTile.src;
         let otherImg = otherTile.src;
         currTile.src = otherImg;
@@ -96,3 +95,16 @@ function matchPotions() {
     matchThree();
 }
 
+function matchThree() {
+    //check rows
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns - 2; c++) {
+            let potion1 = board[ r ][ c ];
+            let potion2 = board[ r ][ c + 1 ];
+            let potion3 = board[ r ][ c + 2 ];
+            if (potion1.src == potion2.src && potion2.src == potion3.src && !potion1.src.includes("blank")) {
+                potion1.src = "./images/blank.png";
+            }
+        }
+    }
+}
