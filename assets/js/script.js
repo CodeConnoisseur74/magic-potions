@@ -12,7 +12,8 @@ window.onload = function () {
 
     //1/10th of a second
     window.setInterval(function () {
-        matchPotions();
+        matchPotion();
+        slidePotion();
     }, 100);
 };
 
@@ -21,9 +22,9 @@ function randomPotion() {
 }
 
 function startGame() {
-    for (let r = 0;r < rows;r++) {
+    for (let r = 0; r < rows; r++) {
         let row = [];
-        for (let c = 0;c < columns;c++) {
+        for (let c = 0; c < columns; c++) {
             // <img id="0-0" src="./images/Red.png">
             let tile = document.createElement("img");
             tile.id = r.toString() + "-" + c.toString();
@@ -94,20 +95,20 @@ function dragEnd() {
         let currImg = currTile.src;
         let otherImg = otherTile.src;
         currTile.src = otherImg;
-        otherTile = currImg;
+        otherTile.src = currImg;
 
-        let validMove = checkValid;
+        let validMove = checkValid();
         if (!validMove) {
             let currImg = currTile.src;
             let otherImg = otherTile.src;
             currTile.src = otherImg;
-            otherTile = currImg;
+            otherTile.src = currImg;
 
         }
     }
 }
 
-function matchPotions() {
+function matchPotion() {
     //matchFive()
     //matchFour()
     matchThree();
@@ -115,8 +116,8 @@ function matchPotions() {
 
 function matchThree() {
     //check rows
-    for (let r = 0;r < rows;r++) {
-        for (let c = 0;c < columns - 2;c++) {
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns - 2; c++) {
             let potion1 = board[ r ][ c ];
             let potion2 = board[ r ][ c + 1 ];
             let potion3 = board[ r ][ c + 2 ];
@@ -130,8 +131,8 @@ function matchThree() {
     }
 
     //check columns
-    for (let c = 0;c < columns;c++) {
-        for (let r = 0;r < rows - 2;r++) {
+    for (let c = 0; c < columns; c++) {
+        for (let r = 0; r < rows - 2; r++) {
             let potion1 = board[ r ][ c ];
             let potion2 = board[ r + 1 ][ c ];
             let potion3 = board[ r + 2 ][ c ];
@@ -147,8 +148,8 @@ function matchThree() {
 
 function checkValid() {
     //check rows
-    for (let r = 0;r < rows;r++) {
-        for (let c = 0;c < columns - 2;c++) {
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns - 2; c++) {
             let potion1 = board[ r ][ c ];
             let potion2 = board[ r ][ c + 1 ];
             let potion3 = board[ r ][ c + 2 ];
@@ -160,8 +161,8 @@ function checkValid() {
     }
 
     //check columns
-    for (let c = 0;c < columns;c++) {
-        for (let r = 0;r < rows - 2;r++) {
+    for (let c = 0; c < columns; c++) {
+        for (let r = 0; r < rows - 2; r++) {
             let potion1 = board[ r ][ c ];
             let potion2 = board[ r + 1 ][ c ];
             let potion3 = board[ r + 2 ][ c ];
@@ -172,4 +173,21 @@ function checkValid() {
         }
     }
     return false;
+}
+
+function slidePotion() {
+    //Iterate through rows and columns
+    for (let c = 0; c < columns; c++) {
+        let ind = rows - 1;
+        for (let r = columns - 1; r >= 0; r--) {
+            if (!board[ r ][ c ].src.includes("blank")) {
+                board[ ind ][ c ].src = board[ r ][ c ].src;
+                ind -= 1;
+            }
+        }
+
+        for (let r = ind; r > 0; r--) {
+            board[ r ][ c ].src = "./images/blank.png";
+        }
+    }
 }

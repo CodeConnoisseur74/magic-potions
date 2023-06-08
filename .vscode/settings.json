@@ -33,6 +33,5 @@
    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
    "emmet.includeLanguages": {
       "javascript": "javascriptreact"
-   },
-   "javascript.format.insertSpaceAfterSemicolonInForStatements": false
+   }
 }
