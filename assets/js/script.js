@@ -69,6 +69,10 @@ function dragDrop() {
 
 function dragEnd() {
 
+    if (currTile.src.includes("blank") || otherTile.src.includes("blank")) {
+        return;
+    }
+
     let currCoords = currTile.id.split("-"); //id="0-0" -> ["0", "0"]
     let r = parseInt(currCoords[ 0 ]);
     let c = parseInt(currCoords[ 1 ]);
@@ -91,6 +95,15 @@ function dragEnd() {
         let otherImg = otherTile.src;
         currTile.src = otherImg;
         otherTile = currImg;
+
+        let validMove = checkValid;
+        if (!validMove) {
+            let currImg = currTile.src;
+            let otherImg = otherTile.src;
+            currTile.src = otherImg;
+            otherTile = currImg;
+
+        }
     }
 }
 
@@ -130,4 +143,33 @@ function matchThree() {
             }
         }
     }
+}
+
+function checkValid() {
+    //check rows
+    for (let r = 0;r < rows;r++) {
+        for (let c = 0;c < columns - 2;c++) {
+            let potion1 = board[ r ][ c ];
+            let potion2 = board[ r ][ c + 1 ];
+            let potion3 = board[ r ][ c + 2 ];
+            if (potion1.src == potion2.src && potion2.src == potion3.src && !potion1.src.includes("blank")) {
+                return true;
+
+            }
+        }
+    }
+
+    //check columns
+    for (let c = 0;c < columns;c++) {
+        for (let r = 0;r < rows - 2;r++) {
+            let potion1 = board[ r ][ c ];
+            let potion2 = board[ r + 1 ][ c ];
+            let potion3 = board[ r + 2 ][ c ];
+            if (potion1.src == potion2.src && potion2.src == potion3.src && !potion1.src.includes("blank")) {
+                return true;
+
+            }
+        }
+    }
+    return false;
 }
