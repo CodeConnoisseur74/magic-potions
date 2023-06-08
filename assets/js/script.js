@@ -14,6 +14,7 @@ window.onload = function () {
     window.setInterval(function () {
         matchPotion();
         slidePotion();
+        generatePotion();
     }, 100);
 };
 
@@ -186,8 +187,16 @@ function slidePotion() {
             }
         }
 
-        for (let r = ind; r > 0; r--) {
+        for (let r = ind; r >= 0; r--) {
             board[ r ][ c ].src = "./images/blank.png";
+        }
+    }
+}
+
+function generatePotion() {
+    for (let c = 0; c < columns; c++) {
+        if (board[ 0 ][ c ].src.includes("blank")) {
+            board[ 0 ][ c ].src = "./images/" + randomPotion() + ".png";
         }
     }
 }
